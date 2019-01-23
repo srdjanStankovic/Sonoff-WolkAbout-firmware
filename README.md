@@ -33,4 +33,5 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
 
  <img width="220" alt="capture" src="https://user-images.githubusercontent.com/8199494/51622123-3dfa0000-1f36-11e9-8f61-3270fa1c9c8b.PNG">
  
- **NOTE** By uploading this custom firmware you wll not longer be able to use the eWeLink app.
+ 
+ **NOTE** By uploading this custom firmware you will not longer be able to use the eWeLink app.
