@@ -1,4 +1,4 @@
-# Sonoff-WolkAbout
+# Sonoff-WolkAbout-firmware
 This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout platform.
 
 # Prerequest
