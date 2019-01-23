@@ -1,4 +1,3 @@
-
 #include <ESP8266WiFi.h>
 
 #include "WolkConn.h"
@@ -11,6 +10,7 @@ const char* wifi_pass = "wifi_password";
 
 const char *device_key = "some_key";
 const char *device_password = "some_password";
+
 const char* hostname = "api-demo.wolkabout.com";
 int portno = 1883;
 
@@ -33,7 +33,7 @@ static void actuation_handler(const char* reference, const char* value)
   Serial.println(value);
 
   if (strcmp(reference, "SW") == 0) {
-    strcpy(actuator_value[1], value);
+    strcpy(actuator_value[0], value);
   }
   else
     Serial.print("Wrong reference!");  
@@ -49,16 +49,17 @@ static actuator_status_t actuator_status_provider(const char* reference)
 
   if (strcmp(reference, "SW") == 0)
   {
-    Serial.print("Hey there SL, your new value is ");
+    Serial.print("Hey there SW, your new value is: ");
+    Serial.println(actuator_value[0]);
     if (strcmp(actuator_value[0], "true") == 0)
     {
-      Serial.println(actuator_value[0]);
+      Serial.println("Set value is true");
       digitalWrite(12, LOW);
       digitalWrite(13, LOW);
     }
     else
     {
-      Serial.println(actuator_value[0]);
+      Serial.println("Set value is false");
       digitalWrite(12, HIGH);
       digitalWrite(13, HIGH);
     }
@@ -113,7 +114,7 @@ void setup() {
   wolk_init(&wolk, actuation_handler, actuator_status_provider, NULL, NULL,
             device_key, device_password, &client, hostname, portno, PROTOCOL_JSON_SINGLE, actuator_refs, NUM_ACTUATORS);
 
-  //wolk_init_in_memory_persistence(&wolk, &outbound_messages, sizeof(outbound_messages), false);
+  wolk_init_in_memory_persistence(&wolk, &outbound_messages, sizeof(outbound_messages), false);
   
   wolk_connect(&wolk);
   delay(1000);
