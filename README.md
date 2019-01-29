@@ -38,5 +38,5 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
  
  # TODO/IMPROVEMENTS
   * use LED as a signal for different stages of firmware:
-    * blink fast is WiFi unreachable
-    * blink slowly is Connection with WA is lost and can't be reestablished
+    * blink fast when WiFi is unreachable
+    * blink slowly when Connection with WA is lost and can't be reestablished
