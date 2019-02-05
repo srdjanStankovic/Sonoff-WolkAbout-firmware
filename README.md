@@ -31,7 +31,7 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
  * Upload fimrware from Arduino IDE. **IMPORTANT** Hold down reset switch on Sonoff(only presented switch on the board) while connecting USB to your PC. This will take Sonoff board into bootloader mode and you will be enable to upload firmware.
  * Create dashboard on WolkAbout platform and add actuator widget
 
- <img width="220" alt="capture" src="https://user-images.githubusercontent.com/8199494/51622123-3dfa0000-1f36-11e9-8f61-3270fa1c9c8b.PNG">
+![screenshot from 2019-02-05 07-28-58](https://user-images.githubusercontent.com/8199494/52256667-f00ed000-2917-11e9-8b5d-a2624d5425ea.png)
  
  
  **NOTE** By uploading this custom firmware you will not longer be able to use the *eWeLink app*.
