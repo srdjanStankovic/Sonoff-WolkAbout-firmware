@@ -9,9 +9,9 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
  * [USB to TTL UART](https://www.aliexpress.com/item/CH340G-5V-USB-to-TTL-UART-Serial-Converter/32524218818.html).
 
 ### Software/Firmware
- * Arduino IDE
- * ESP8266 board configured under Arduino IDE, [guide](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/)
- * WolkAbout library. Type WolkAbout in Sketch/Inlude Library/Manage Libraires/
+ * Arduino IDE with following:
+    * Configured ESP8266 board, [guide](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/)
+    * Installed WolkAbout library. Type WolkAbout in Sketch/Inlude Library/Manage Libraires/
  
 # Usage
  * Create device on WolkAbout IoT Platofrm importing `template.json` file
