@@ -1,5 +1,5 @@
 # Sonoff-WolkAbout-firmware
-This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout platform.
+This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout platform. It is developed under Arduino IDE and also with this IDE programming is done.
 
 # Prerequest
 
@@ -9,11 +9,13 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
  * [USB to TTL UART](https://www.aliexpress.com/item/CH340G-5V-USB-to-TTL-UART-Serial-Converter/32524218818.html).
 
 ### Software/Firmware
- * Intalled ESP8266 board in Arduino IDE, [guide](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/)
+ * Arduino IDE
+ * ESP8266 board configured under Arduino IDE, [guide](https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/)
  * WolkAbout library. Type WolkAbout in Sketch/Inlude Library/Manage Libraires/
  
 # Usage
  * Create device on WolkAbout IoT Platofrm importing `template.json` file
+ * Open `sonoff-wolkabout-firmware.ino` in Arduino IDE. This file is located in `sonoff-wolkabout-firmware` folder.
  * Insert your wifi credentials here
  ```
  const char* ssid = "wifi_ssid";
@@ -24,7 +26,7 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
  const char *device_key = "some_key";
  const char *device_password = "some_password";
  ```
- * Open Sonofff case and connect it with USB to TTL converter like it is presented on picture below
+ * Open Sonofff case and connect it with USB to TTL converter using jumper wires like it is presented on picture below
  
  ![simg_3625](https://user-images.githubusercontent.com/8199494/51623138-52d79300-1f38-11e9-82d5-138c8e5cc672.jpg)
  
