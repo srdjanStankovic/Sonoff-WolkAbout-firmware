@@ -5,6 +5,8 @@
 
 #define NUM_ACTUATORS 1
 
+#define GREEN_LED(x) digitalWrite(13, x);
+
 const char* ssid = "wifi_ssid";
 const char* wifi_pass = "wifi_password";
 
@@ -36,7 +38,7 @@ static void actuation_handler(const char* reference, const char* value)
     strcpy(actuator_value[0], value);
   }
   else
-    Serial.print("Wrong reference!");  
+    Serial.print("Wrong reference!");
 }
 
 static actuator_status_t actuator_status_provider(const char* reference)
@@ -55,15 +57,15 @@ static actuator_status_t actuator_status_provider(const char* reference)
     {
       Serial.println("Set value is true");
       digitalWrite(12, LOW);
-      digitalWrite(13, LOW);
+      GREEN_LED(LOW);
     }
     else
     {
       Serial.println("Set value is false");
       digitalWrite(12, HIGH);
-      digitalWrite(13, HIGH);
+      GREEN_LED(HIGH);
     }
- 
+
     actuator_status_init(&actuator_status, actuator_value[0], ACTUATOR_STATE_READY);
   }
   else
@@ -75,15 +77,22 @@ static actuator_status_t actuator_status_provider(const char* reference)
 void setup_wifi() {
 
   delay(10);
-  // We start by connecting to a WiFi network
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
+
+  WiFi.disconnect();
+  WiFi.persistent(false);
+  WiFi.mode(WIFI_OFF);
+  WiFi.mode(WIFI_STA);
+  WiFi.setOutputPower(0);
   WiFi.begin(ssid, wifi_pass);
 
   if ( WiFi.status() != WL_CONNECTED) {
+
     while (WiFi.begin(ssid, wifi_pass) != WL_CONNECTED) {
       Serial.print(".");
+      GREEN_LED(!digitalRead(13));
       delay(4000);
     }
   }
@@ -96,9 +105,15 @@ void setup_wifi() {
 
 void reconnect_to_platform()
 {
+  GREEN_LED(LOW);
   setup_wifi();
-  
-  wolk_connect(&wolk);
+
+  if(wolk_connect(&wolk) == W_TRUE)
+  {
+    Serial.println("Reset Sonoff device!");
+    ESP.restart();
+  }
+  GREEN_LED(HIGH);
 }
 
 void setup() {
@@ -106,8 +121,11 @@ void setup() {
 
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
-  digitalWrite(12, HIGH);
-  digitalWrite(13, HIGH);
+
+  GREEN_LED(LOW);
+  delay(500);
+  GREEN_LED(HIGH);
+  delay(500);
 
   setup_wifi();
 
@@ -115,28 +133,25 @@ void setup() {
             device_key, device_password, &client, hostname, portno, PROTOCOL_JSON_SINGLE, actuator_refs, NUM_ACTUATORS);
 
   wolk_init_in_memory_persistence(&wolk, &outbound_messages, sizeof(outbound_messages), false);
-  
-  wolk_connect(&wolk);
-  delay(1000);
-  
-  wolk_publish_actuator_status(&wolk, "SW");
-}
 
-void loop() {
-
-  if (Serial.available() > 0)
-  {
-    wolk_disconnect(&wolk);
-    Serial.println("Disconnected!");
-    while (true)
-    {
-      delay(10000);
-    };
-  }
-  if(wolk_process(&wolk, 5) == W_TRUE)
+  if(wolk_connect(&wolk) == W_TRUE)
   {
     reconnect_to_platform();
   }
-
+  
   delay(1000);
+
+  wolk_publish_actuator_status(&wolk, "SW");
+}
+
+
+void loop() {
+
+  if (wolk_process(&wolk) == W_TRUE)
+  {
+    reconnect_to_platform();
+    delay(100);
+    wolk_publish_actuator_status(&wolk, "SW");
+  }
+
 }
