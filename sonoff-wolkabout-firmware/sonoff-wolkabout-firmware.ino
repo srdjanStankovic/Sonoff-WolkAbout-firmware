@@ -56,13 +56,13 @@ static actuator_status_t actuator_status_provider(const char* reference)
     if (strcmp(actuator_value[0], "true") == 0)
     {
       Serial.println("Set value is true");
-      digitalWrite(12, LOW);
+      digitalWrite(12, HIGH);
       GREEN_LED(LOW);
     }
     else
     {
       Serial.println("Set value is false");
-      digitalWrite(12, HIGH);
+      digitalWrite(12, LOW);
       GREEN_LED(HIGH);
     }
 
