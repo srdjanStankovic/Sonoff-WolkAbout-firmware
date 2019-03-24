@@ -38,7 +38,9 @@ This is Sonoff WIFI Smart Switch firmware for direct connection to WolkAbout pla
  
  **NOTE** By uploading this custom firmware you will not longer be able to use the *eWeLink app*.
  
- # TODO/IMPROVEMENTS
-  * use LED as a signal for different stages of firmware:
-    * blink fast when WiFi is unreachable
-    * blink slowly when Connection with WA is lost and can't be reestablished
+ # LED SIGNALS
+Green LED presented on Sonoff can generate one of messages:
+ * One blink with duration 1s is START(device boot)
+ * 4s ON - 4s OFF device can't connect to WIFI
+ * Led is permanent ON then Output is ON 
+ * Led is permanent OFF then Output is OFF
