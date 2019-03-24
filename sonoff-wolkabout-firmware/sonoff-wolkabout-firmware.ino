@@ -105,15 +105,13 @@ void setup_wifi() {
 
 void reconnect_to_platform()
 {
-  GREEN_LED(LOW);
   setup_wifi();
 
   if(wolk_connect(&wolk) == W_TRUE)
   {
-    Serial.println("Reset Sonoff device!");
+    Serial.println("Check your WolkAbout credentials or WolkAbout isn't alive! \n\r For any case Sonoff device will be reset!");
     ESP.restart();
   }
-  GREEN_LED(HIGH);
 }
 
 void setup() {
