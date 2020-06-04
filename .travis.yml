@@ -1,0 +1,20 @@
+language: cpp
+sudo: false
+
+cache:
+  directories:
+    - ~/arduino_ide
+    - ~/.arduino15/packages/
+git:
+  depth: false
+  quiet: true
+env:
+  global:
+     - ARDUINO_IDE_VERSION="1.8.12"
+script:
+  - build_platform esp8266
+  - build_platform ESP8266WiFi
+notifications:
+  email:
+    on_success: change
+    on_failure: change
