@@ -21,9 +21,9 @@ env:
   global:
      - ARDUINO_IDE_VERSION="1.8.12"
 install:
-   - arduino --pref "boardsmanager.additional.urls=https://github.com/esp8266/Arduino/releases/download/2.1.0/package_esp8266com_index.json" --save-prefs
    - arduino --install-library "WolkConnect"
-   - arduino --board esp8266com:esp8266:generic:xtal=80,FlashFreq=40,FlashMode=dio,baud=115200,eesz=4M1M,ip=lm2,ResetMethod=none,dbg=Serial,$(DEBUG_LEVEL)
+  - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
+  - arduino --install-boards esp8266:esp8266
    - arduino --pref "compiler.warning_level=all" --save-prefs
 notifications:
   email:
