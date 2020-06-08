@@ -22,9 +22,8 @@ env:
      - ARDUINO_IDE_VERSION="1.8.12"
 install:
    - arduino --install-library "WolkConnect"
-script:
-  - build_platform esp8266
-  - build_platform ESP8266WiFi
+   - arduino --install-boards esp8266:esp8266
+   - arduino --board esp8266:esp8266:generic --save-prefs
 notifications:
   email:
     on_success: change
