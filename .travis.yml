@@ -39,7 +39,9 @@ notifications:
     on_failure: change
 
 script:
-  - BOARD="WiFi101"
+  - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkAbout-firmware"
+  - "echo $PWD"
+  - BOARD="arduino:samd:mkr1000"
   - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkabout-firmware/"
   - "echo $PWD"
   - arduino --verbose-build --verify --board ${BOARD} sonoff-wolkabout-firmware.ino
