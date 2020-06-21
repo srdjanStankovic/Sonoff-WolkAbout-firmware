@@ -8,13 +8,13 @@ env:
 before_install:
    - wget -O arduino.tar.xz https://downloads.arduino.cc/arduino-${ARDUINO_IDE_VERSION}-linux64.tar.xz
    - tar xf arduino.tar.xz
-   - mv arduino-${IDEVER} ${HOME}/arduino_ide
+   - mv arduino-${ARDUINO_IDE_VERSION} ${HOME}/arduino_ide
    - IDEDIR="${HOME}/arduino_ide"
-   - LIBDIR="${IDEDIR}/portable/sketchbook/libraries"
+   - LIBDIR="${ARDUINO_IDE_VERSION}/portable/sketchbook/libraries"
    - mkdir -p "${LIBDIR}"
    - cp -r /home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware "${LIBDIR}"
-   - export PATH="${IDEDIR}:${PATH}"
-   - cd ${IDEDIR}
+   - export PATH="${ARDUINO_IDE_VERSION}:${PATH}"
+   - cd ${ARDUINO_IDE_VERSION}
    - which arduino
 
 install:
