@@ -10,11 +10,11 @@ before_install:
    - tar xf arduino.tar.xz
    - mv arduino-${ARDUINO_IDE_VERSION} ${HOME}/arduino_ide
    - IDEDIR="${HOME}/arduino_ide"
-   - LIBDIR="${ARDUINO_IDE_VERSION}/portable/sketchbook/libraries"
+   - LIBDIR="${IDEDIR}/portable/sketchbook/libraries"
    - mkdir -p "${LIBDIR}"
    - cp -r /home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware "${LIBDIR}"
-   - export PATH="${ARDUINO_IDE_VERSION}:${PATH}"
-   - cd ${ARDUINO_IDE_VERSION}
+   - export PATH="${IDEDIR}:${PATH}"
+   - cd ${IDEDIR}
    - which arduino
 
 install:
