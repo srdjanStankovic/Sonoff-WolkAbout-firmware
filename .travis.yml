@@ -41,6 +41,6 @@ notifications:
 script:
   - "echo $PWD"
   - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkabout-firmware"
-  - BOARD="arduino:esp8266"
+  - BOARD="esp8266:esp8266:nodemcuv1"
   - "echo $PWD"
   - arduino --verbose-build --verify --board ${BOARD} sonoff-wolkabout-firmware.ino
