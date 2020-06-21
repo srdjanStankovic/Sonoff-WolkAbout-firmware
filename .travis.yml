@@ -21,8 +21,8 @@ install:
   - arduino --install-library "WolkConnect"
   - arduino --install-library "WiFi101"
   - arduino --install-boards "arduino:samd"
-#  - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
-#  - arduino --install-boards esp8266:esp8266
+  - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
+  - arduino --install-boards esp8266:esp8266
   - arduino --pref "compiler.warning_level=all" --save-prefs
 
 cache:
@@ -39,6 +39,7 @@ notifications:
     on_failure: change
 
 script:
+  - "echo $PWD"
   - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkAbout-firmware"
   - "echo $PWD"
   - BOARD="arduino:samd:mkr1000"
