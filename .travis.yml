@@ -40,12 +40,7 @@ notifications:
 
 script:
   - "echo $PWD"
-  - "ls /home/travis/build/srdjanStankovic"
-  - "ls /home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware"
-  - "ls /home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkAbout-firmware"
-  - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkAbout-firmware"
- # - "echo $PWD"
- # - BOARD="arduino:esp8266"
- # - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkabout-firmware/"
- # - "echo $PWD"
- # - arduino --verbose-build --verify --board ${BOARD} sonoff-wolkabout-firmware.ino
+  - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkabout-firmware"
+  - BOARD="arduino:esp8266"
+  - "echo $PWD"
+  - arduino --verbose-build --verify --board ${BOARD} sonoff-wolkabout-firmware.ino
