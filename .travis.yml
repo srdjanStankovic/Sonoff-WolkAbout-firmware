@@ -40,9 +40,9 @@ notifications:
 
 script:
   - "echo $PWD"
-  - "ls"
-  - "ls /home/travis/"
-  - "ls /home/travis/build"
+  - "ls /home/travis/build/srdjanStankovic"
+  - "ls /home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware"
+  - "ls /home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkAbout-firmware"
   - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkAbout-firmware"
  # - "echo $PWD"
  # - BOARD="arduino:esp8266"
