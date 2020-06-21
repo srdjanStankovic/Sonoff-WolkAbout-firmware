@@ -36,7 +36,7 @@ notifications:
     on_failure: change
 
 script:
-  - BOARD="esp8266"
+  - BOARD="WiFi101"
   - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkabout-firmware/"
   - "echo $PWD"
   - arduino --verbose-build --verify --board ${BOARD} sonoff-wolkabout-firmware.ino
