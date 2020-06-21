@@ -1,6 +1,10 @@
 language: cpp
 sudo: false
 
+env:
+  global:
+     - ARDUINO_IDE_VERSION="1.8.12"
+
 before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16"
   - sleep 3
@@ -12,8 +16,10 @@ before_install:
 
 install:
   - arduino --install-library "WolkConnect"
-  - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
-  - arduino --install-boards esp8266:esp8266
+  - arduino --install-library "WiFi101"
+  - arduino --install-boards "arduino:samd"
+#  - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
+#  - arduino --install-boards esp8266:esp8266
   - arduino --pref "compiler.warning_level=all" --save-prefs
 
 cache:
@@ -23,11 +29,14 @@ cache:
 git:
   depth: false
   quiet: true
-env:
-  global:
-     - ARDUINO_IDE_VERSION="1.8.12"
 
 notifications:
   email:
     on_success: change
     on_failure: change
+
+script:
+  - BOARD="esp8266"
+  - cd "/home/travis/build/srdjanStankovic/Sonoff-WolkAbout-firmware/sonoff-wolkabout-firmware/"
+  - "echo $PWD"
+  - arduino --verbose-build --verify --board ${BOARD} sonoff-wolkabout-firmware.ino
