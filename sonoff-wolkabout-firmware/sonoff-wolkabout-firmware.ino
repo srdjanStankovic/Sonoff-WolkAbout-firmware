@@ -14,7 +14,7 @@ const char *device_key = "some_key";
 const char *device_password = "some_password";
 
 const char* hostname = "api-demo.wolkabout.com";
-int portno = 1883;
+int portno = 2883;
 
 /* WolkConnect-Arduino Connector context */
 static wolk_ctx_t wolk;
@@ -87,11 +87,14 @@ void setup_wifi() {
   WiFi.mode(WIFI_STA);
   WiFi.setOutputPower(0);
   WiFi.begin(ssid, wifi_pass);
+  delay(3000);
 
-  if ( WiFi.status() != WL_CONNECTED) {
+  if ( WiFi.waitForConnectResult() != WL_CONNECTED) {
 
-    while (WiFi.begin(ssid, wifi_pass) != WL_CONNECTED) {
-      Serial.print(".");
+    while (WiFi.waitForConnectResult()!= WL_CONNECTED) {
+
+      WiFi.begin(ssid, wifi_pass);
+      Serial.print("WiFi connecting...\n");
       GREEN_LED(!digitalRead(13));
       delay(4000);
     }
@@ -116,6 +119,7 @@ void reconnect_to_platform()
 
 void setup() {
   Serial.begin(9600);
+  delay(500);
 
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
